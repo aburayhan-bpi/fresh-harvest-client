@@ -11,12 +11,6 @@
 
 ---
 
-## 📸 Screenshots
-
-| Homepage | Product Detail | Login | Register |
-|----------|----------------|-------|----------|
-| ![](./screenshots/home.png) | ![](./screenshots/product-detail.png) | ![](./screenshots/login.png) | ![](./screenshots/register.png) |
-
 ---
 
 ## ⚙️ Tech Stack
