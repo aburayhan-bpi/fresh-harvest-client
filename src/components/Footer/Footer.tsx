@@ -28,7 +28,7 @@ const Footer = () => {
             </div>
             <p className="font-semibold mb-2">Download App:</p>
             <div className="flex gap-3">
-              <img src="./footer/downloadwith.png" alt="download_gateway" />
+              <img src="https://i.ibb.co/Pv9dMVYN/downloadwith.png" alt="download_gateway" />
             </div>
           </div>
 
@@ -88,7 +88,7 @@ const Footer = () => {
             <div className="mt-6">
               <p className="font-semibold mb-2">Accepted Payment Methods:</p>
               <div className="flex gap-4">
-                <img src="./footer/paywith.png" alt="payment_gateway" />
+                <img src="https://i.ibb.co/qqs56m3/paywith.png" alt="payment_gateway" />
               </div>
             </div>
           </div>

@@ -4,61 +4,56 @@ export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://code-commando.com/api/v1",
+    prepareHeaders: (headers) => {
+      const token = localStorage.getItem("accessToken");
+      if (token) {
+        headers.set("Authorization", token);
+      }
+      return headers;
+    },
   }),
-  tagTypes: ["users", "products"],
+  tagTypes: ["users", "products", "categories"],
   endpoints: (builder) => ({
     // Get all books
     getAllProducts: builder.query({
       query: () => "/products",
       providesTags: ["products"],
     }),
-    // Get single book
-    // getSingleBooks: builder.query({
-    //   query: (bookId) => `/books/${bookId}`,
-    //   providesTags: ["book"],
-    // }),
-    // // Get books summary
-    // getSummary: builder.query({
-    //   query: () => "/borrow",
-    //   providesTags: ["borrow"],
-    // }),
-    // // Create a book
-    // createBook: builder.mutation({
-    //   query: (bookData) => ({
-    //     url: "/books",
-    //     method: "POST",
-    //     body: bookData,
-    //   }),
-    //   invalidatesTags: ["book"],
-    // }),
-
-    // // Update a book
-    // updateBook: builder.mutation({
-    //   query: ({ bookId, body }) => ({
-    //     url: `/books/${bookId}`,
-    //     method: "PUT",
-    //     body: body,
-    //   }),
-    //   invalidatesTags: ["book"],
-    // }),
-    // // Delete a book
-    // deleteBook: builder.mutation({
-    //   query: (bookId) => ({
-    //     url: `/books/${bookId}`,
-    //     method: "DELETE",
-    //   }),
-    //   invalidatesTags: ["book"],
-    // }),
-    // // Borrow a book
-    // borrowBook: builder.mutation({
-    //   query: (borrowData) => ({
-    //     url: "/borrow",
-    //     method: "POST",
-    //     body: borrowData,
-    //   }),
-    //   invalidatesTags: ["borrow", "book"],
-    // }),
+    // Get all books
+    getSingleProduct: builder.query({
+      query: (productId) => `/products/${productId}`,
+      providesTags: ["products"],
+    }),
+    // Get all books
+    getAllCategories: builder.query({
+      query: () => "/category",
+      providesTags: ["categories"],
+    }),
+    // Login
+    loginUser: builder.mutation({
+      query: (userLoginInfo) => ({
+        url: "/auth/login",
+        method: "POST",
+        body: userLoginInfo,
+      }),
+      invalidatesTags: ["users"],
+    }),
+    // Login
+    registerUser: builder.mutation({
+      query: (userRegisterInfo) => ({
+        url: "/users/register",
+        method: "POST",
+        body: userRegisterInfo,
+      }),
+      invalidatesTags: ["users"],
+    }),
   }),
 });
 
-export const { useGetAllProductsQuery } = baseApi;
+export const {
+  useGetAllProductsQuery,
+  useLoginUserMutation,
+  useRegisterUserMutation,
+  useGetAllCategoriesQuery,
+  useGetSingleProductQuery,
+} = baseApi;

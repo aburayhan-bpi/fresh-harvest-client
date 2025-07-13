@@ -1,3 +1,4 @@
+import ProductDetail from "@/pages/ProductDetail/ProductDetail";
 import { createBrowserRouter } from "react-router";
 import RootLayout from "../layout/RootLayout";
 import About from "../pages/About/About";
@@ -18,6 +19,10 @@ const routes = createBrowserRouter([
       {
         path: "/shop",
         element: <Shop />,
+      },
+      {
+        path: "/shop/:id",
+        element: <ProductDetail />,
       },
       {
         path: "/about-us",

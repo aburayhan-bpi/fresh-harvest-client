@@ -1,12 +1,27 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router";
-// react icons
+
 import { CiMenuFries } from "react-icons/ci";
 import { FaCartShopping } from "react-icons/fa6";
 import { MdFavorite } from "react-icons/md";
+import LoginModal from "../LoginModal";
+import RegisterModal from "../RegisterModal";
 
-const ResponsiveNavbar = () => {
+const Navbar = () => {
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
+
+  const toggleModal = (action: string) => {
+    // console.log("click from login modal, going to sign up");
+    // console.log(action);
+
+    if (action === "showSignUp") {
+      (document.getElementById("my_modal_1")! as HTMLDialogElement).close();
+      (document.getElementById("my_modal_2")! as HTMLDialogElement).showModal();
+    } else if (action === "showLogin") {
+      (document.getElementById("my_modal_1")! as HTMLDialogElement).showModal();
+      (document.getElementById("my_modal_2")! as HTMLDialogElement).close();
+    }
+  };
 
   return (
     <nav className="fixed top-0 left-0 w-full z-50 px-4 py-3">
@@ -77,9 +92,18 @@ const ResponsiveNavbar = () => {
             <span className="text-sm">Cart</span>
           </Link>
 
-          <button className="px-3 py-1 text-[1rem] border capitalize hover:cursor-pointer sm:flex hidden">
+          {/* Sign In Modal Button */}
+          <button
+            onClick={() => {
+              (
+                document.getElementById("my_modal_1")! as HTMLDialogElement
+              ).showModal();
+            }}
+            className="bg-transparent hover:bg-transparent px-3 py-1 text-[1rem] border hover:cursor-pointer sm:flex hidden"
+          >
             Sign in
           </button>
+
           <Link onClick={() => setMobileSidebarOpen(false)} to="/cart">
             <div className="relative md:hidden">
               <FaCartShopping className="text-2xl dark:text-[#abc2d3]" />
@@ -90,6 +114,7 @@ const ResponsiveNavbar = () => {
               </div>
             </div>
           </Link>
+
           <CiMenuFries
             className="text-[1.8rem] dark:text-[#abc2d3] mr-1 text-[#424242] cursor-pointer md:hidden flex"
             onClick={() => setMobileSidebarOpen(!mobileSidebarOpen)}
@@ -101,7 +126,7 @@ const ResponsiveNavbar = () => {
           className={` ${
             mobileSidebarOpen
               ? "translate-x-0 opacity-100 z-20"
-              : "translate-x-auto opacity-0 z-[-1]"
+              : "translate-x-auto hidden z-[-1]"
           } md:hidden bg-green-100 p-4 text-center absolute top-[65px] dark:bg-slate-700 right-0 w-full sm:w-[50%] rounded-md transition-all duration-300`}
         >
           <ul className="items-center gap-[20px] text-[1rem] text-gray-600 flex flex-col">
@@ -150,20 +175,32 @@ const ResponsiveNavbar = () => {
                 Favorite
               </Link>
             </li>
-            {/* <li>
-            <Link
-              to="/cart"
-              onClick={() => setMobileSidebarOpen(false)}
-              className="py-1"
-            >
-              Cart
-            </Link>
-          </li> */}
+            <li>
+              <button
+                onClick={() => {
+                  (
+                    document.getElementById("my_modal_1")! as HTMLDialogElement
+                  ).showModal();
+                  setMobileSidebarOpen(false);
+                }}
+                className="bg-transparent hover:bg-transparent px-3 py-1 text-[1rem] border hover:cursor-pointer md:hidden"
+              >
+                Sign in
+              </button>
+            </li>
           </ul>
         </aside>
       </div>
+
+      {/* Login Modal */}
+
+      <LoginModal toggleModal={toggleModal} />
+
+      {/* Register Modal */}
+
+      <RegisterModal toggleModal={toggleModal} />
     </nav>
   );
 };
 
-export default ResponsiveNavbar;
+export default Navbar;

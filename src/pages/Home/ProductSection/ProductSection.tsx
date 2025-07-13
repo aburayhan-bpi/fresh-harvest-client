@@ -1,13 +1,25 @@
+import { Link } from "react-router";
 import Loader from "../../../components/Loader";
 import Title from "../../../components/Title";
-import { useGetAllProductsQuery } from "../../../redux/api/baseApi";
-import { type IProduct } from "c:/Job Task/fresh-harvest/Type";
+import {
+  useGetAllCategoriesQuery,
+  useGetAllProductsQuery,
+} from "../../../redux/api/baseApi";
+import {
+  type ICategoryProps,
+  type IProduct,
+} from "c:/Job Task/fresh-harvest/Type";
 
 const ProductSection = () => {
-  const { data, isLoading } = useGetAllProductsQuery(undefined);
-  console.log(data);
+  const { data: products, isLoading: isProductLoading } =
+    useGetAllProductsQuery(undefined);
+  const { data: categoriess, isLoading: isCategoriesLoading } =
+    useGetAllCategoriesQuery(undefined);
 
-  const categories = ["All", "Fruits", "Vegetables", "Salad"];
+//   console.log(products);
+//   console.log(categoriess);
+
+  //   const categories = ["All", "Fruits", "Vegetables", "Salad"];
 
   return (
     <section className="w-full py-16">
@@ -29,27 +41,27 @@ const ProductSection = () => {
         </p>
 
         {/* Category Filters */}
-        <div className="flex justify-center gap-2 flex-wrap mb-10">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              className={`px-4 py-2 rounded-md text-sm font-medium border transition ${
-                cat === "All"
-                  ? "bg-green-600 text-white border-green-600"
-                  : "bg-white text-gray-600 border-gray-300 hover:bg-gray-100"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
+        {isCategoriesLoading ? (
+          <Loader />
+        ) : (
+          <div className="flex justify-center gap-2 flex-wrap mb-10">
+            {categoriess?.data?.map((cat: ICategoryProps) => (
+              <button
+                key={cat?.id}
+                className={`px-4 py-2 rounded-md text-sm font-medium border transition capitalize`}
+              >
+                {cat?.categoryName}
+              </button>
+            ))}
+          </div>
+        )}
 
         {/* Product Grid */}
-        {isLoading ? (
+        {isProductLoading ? (
           <Loader />
         ) : (
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {data?.data?.map((product: IProduct) => (
+            {products?.data?.map((product: IProduct) => (
               <div
                 key={product?.id}
                 className="bg-white rounded-xl shadow-sm hover:shadow-md transition p-4 flex flex-col items-center justify-between"
@@ -67,9 +79,11 @@ const ProductSection = () => {
                   {product?.productName}
                 </h3>
                 <p className="text-gray-500 text-sm mb-3">{product.price}</p>
-                <button className="py-1 text-white rounded-md w-full bg-orange-400 hover:bg-orange-500 transition-colors duration-300 hover:cursor-pointer">
-                  Add to cart
-                </button>
+                <Link className="w-full" to={`/shop/${product?.id}`}>
+                  <button className="py-1 text-white rounded-md w-full bg-orange-400 hover:bg-orange-500 transition-colors duration-300 hover:cursor-pointer">
+                    Add to cart
+                  </button>
+                </Link>
               </div>
             ))}
           </div>
