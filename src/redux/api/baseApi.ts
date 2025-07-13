@@ -3,70 +3,62 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://test-2-tan-chi.vercel.app/api/v1",
+    baseUrl: "https://code-commando.com/api/v1",
   }),
-  tagTypes: ["book", "borrow"],
+  tagTypes: ["users", "products"],
   endpoints: (builder) => ({
     // Get all books
-    getBooks: builder.query({
-      query: () => "/books",
-      providesTags: ["book"],
+    getAllProducts: builder.query({
+      query: () => "/products",
+      providesTags: ["products"],
     }),
     // Get single book
-    getSingleBooks: builder.query({
-      query: (bookId) => `/books/${bookId}`,
-      providesTags: ["book"],
-    }),
-    // Get books summary
-    getSummary: builder.query({
-      query: () => "/borrow",
-      providesTags: ["borrow"],
-    }),
-    // Create a book
-    createBook: builder.mutation({
-      query: (bookData) => ({
-        url: "/books",
-        method: "POST",
-        body: bookData,
-      }),
-      invalidatesTags: ["book"],
-    }),
+    // getSingleBooks: builder.query({
+    //   query: (bookId) => `/books/${bookId}`,
+    //   providesTags: ["book"],
+    // }),
+    // // Get books summary
+    // getSummary: builder.query({
+    //   query: () => "/borrow",
+    //   providesTags: ["borrow"],
+    // }),
+    // // Create a book
+    // createBook: builder.mutation({
+    //   query: (bookData) => ({
+    //     url: "/books",
+    //     method: "POST",
+    //     body: bookData,
+    //   }),
+    //   invalidatesTags: ["book"],
+    // }),
 
-    // Update a book
-    updateBook: builder.mutation({
-      query: ({ bookId, body }) => ({
-        url: `/books/${bookId}`,
-        method: "PUT",
-        body: body,
-      }),
-      invalidatesTags: ["book"],
-    }),
-    // Delete a book
-    deleteBook: builder.mutation({
-      query: (bookId) => ({
-        url: `/books/${bookId}`,
-        method: "DELETE",
-      }),
-      invalidatesTags: ["book"],
-    }),
-    // Borrow a book
-    borrowBook: builder.mutation({
-      query: (borrowData) => ({
-        url: "/borrow",
-        method: "POST",
-        body: borrowData,
-      }),
-      invalidatesTags: ["borrow", "book"],
-    }),
+    // // Update a book
+    // updateBook: builder.mutation({
+    //   query: ({ bookId, body }) => ({
+    //     url: `/books/${bookId}`,
+    //     method: "PUT",
+    //     body: body,
+    //   }),
+    //   invalidatesTags: ["book"],
+    // }),
+    // // Delete a book
+    // deleteBook: builder.mutation({
+    //   query: (bookId) => ({
+    //     url: `/books/${bookId}`,
+    //     method: "DELETE",
+    //   }),
+    //   invalidatesTags: ["book"],
+    // }),
+    // // Borrow a book
+    // borrowBook: builder.mutation({
+    //   query: (borrowData) => ({
+    //     url: "/borrow",
+    //     method: "POST",
+    //     body: borrowData,
+    //   }),
+    //   invalidatesTags: ["borrow", "book"],
+    // }),
   }),
 });
 
-export const {
-  useGetBooksQuery,
-  useUpdateBookMutation,
-  useGetSingleBooksQuery,
-  useCreateBookMutation,
-  useGetSummaryQuery,
-  useDeleteBookMutation,
-  useBorrowBookMutation,
-} = baseApi;
+export const { useGetAllProductsQuery } = baseApi;

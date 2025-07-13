@@ -1,4 +1,5 @@
 import { PiArrowBendUpRightBold } from "react-icons/pi";
+import Title from "../Title";
 
 const Hero = () => {
   return (
@@ -11,9 +12,7 @@ const Hero = () => {
       <div className="mt-60 md:mt-38 lg:mt-10 max-w-7xl w-full mx-auto px-4 md:px-8 flex flex-col md:flex-row justify-between items-center">
         {/* Left: Text content */}
         <div className="text-left space-y-6 -mt-40">
-          <p className="px-1 rounded bg-lime-100 text-lime-700 font-semibold text-md w-fit">
-            Welcome to Fresh Harvest
-          </p>
+          <Title title={"Welcome to Fresh Harvest"}></Title>
           <h1 className="text-4xl md:text-5xl font-extrabold leading-tight text-slate-900">
             Fresh Fruits and <br /> Vegetables
           </h1>
