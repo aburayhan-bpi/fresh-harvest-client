@@ -1,69 +1,138 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 🥗 Fresh Harvest
 
-Currently, two official plugins are available:
+**Fresh Harvest** is a modern, mobile-friendly e-commerce web application designed for browsing and buying fresh fruits, vegetables, and seasonal produce. It features a visually rich UI, category filtering, cart/favorite system, authentication modals, and a blog section—all styled using Tailwind CSS and DaisyUI.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🌐 Live Site
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+👉 [Visit Fresh Harvest](https://fresh-harvest-33.netlify.app)
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## 📸 Screenshots
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+| Homepage | Product Detail | Login | Register |
+|----------|----------------|-------|----------|
+| ![](./screenshots/home.png) | ![](./screenshots/product-detail.png) | ![](./screenshots/login.png) | ![](./screenshots/register.png) |
+
+---
+
+## ⚙️ Tech Stack
+
+- **React 19 + Vite**
+- **TypeScript**
+- **Redux Toolkit + RTK Query**
+- **Tailwind CSS v4 + DaisyUI**
+- **Radix UI** (Dialogs, Accessibility Primitives)
+- **React Icons** & **Lucide Icons**
+- **React Hook Form** for form validation
+
+---
+
+## 🛠️ Local Development
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/aburayhan-bpi/fresh-harvest-client
+cd fresh-harvest
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Install Dependencies
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
+
+### 3. Run the Development Server
+
+```bash
+npm run dev
+```
+
+The app should open at `http://localhost:5173`.
+
+---
+
+## 🧱 Project Structure
+
+```
+src/
+├── components/      # Shared UI components (buttons, modals, inputs)
+├── pages/           # Home, Shop, ProductDetail, Login, Register, etc.
+├── redux/           # API slice, auth & cart state
+├── assets/          # Static files and images
+├── routes/          # Route configurations
+├── App.tsx
+└── main.tsx
+```
+
+---
+
+## 🚀 Build & Deployment
+
+### Build for Production
+
+```bash
+npm run build
+```
+
+### Preview Production
+
+```bash
+npm run preview
+```
+
+### Deployment
+
+Deploy the `dist/` directory to any static host like:
+
+- **Netlify**
+- **Vercel**
+- **GitHub Pages**
+- **Firebase Hosting**
+
+> Example: Deployed using Netlify — `https://fresh-harvest-33.netlify.app`
+
+---
+
+## 🔐 Features (Development ongoing)
+
+- ✅ **Browse Products by Category**
+- 🛒 **Add to Cart**
+- ❤️ **Add to Favorites**
+- 🔍 **Product Detail with Rating & Tabs**
+- 🔐 **Login & Register with Modal Support**
+- 📝 **Blog Section**
+- 🌙 **Fully Responsive Design**
+- 📦 **Reusable Components & API Layer via Redux Toolkit Query**
+
+---
+
+## 📦 NPM Scripts
+
+| Command            | Description                       |
+|--------------------|-----------------------------------|
+| `npm run dev`      | Start local dev server            |
+| `npm run build`    | Build the project                 |
+| `npm run preview`  | Preview the production build      |
+| `npm run lint`     | Run ESLint                        |
+
+---
+
+## 📧 Contact
+
+For queries, collaborations, or feedback, feel free to reach out:
+
+- 📬 Email: aburayhan.bpi@gmail.com
+- 📍 Address: Bogura, Bangladesh
+
+---
+
+## © License
+
+© 2025 Fresh Harvest – All rights reserved by Banana Studio.
+
+---
